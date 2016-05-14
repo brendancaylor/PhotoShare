@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebApplication.Models.DbFolder>
+
+@{
+    ViewBag.Title = "Folders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your DropBox Folders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th></th>
+        <th>
+            View Token
+        </th>
+        <th>
+            Total Sold
+        </th>
+        <th>
+            Total Sales
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsIncluded)
+            @Html.DisplayFor(modelItem => item.DbName)
+        </td>
+
+        <td>
+
+
+            @if (item.IsIncluded)
+            {
+
+                @Html.ActionLink("Settings", "Settings")
+                <span>|</span>
+
+                @Html.ActionLink("Photos", "Photos")
+                <span>|</span>
+                <a href="#">
+                    Print Letters
+                </a>
+                <span>|</span>
+                <a href="#">
+                    Re Sync
+                </a>
+            }
+            else
+            {
+                <div class="form-group">
+                    <select class="form-control">
+                        <option>Add as entire folder</option>
+                        <option>Add as sets of 1 pic</option>
+                        <option>Add as sets of 2 pics</option>
+                        <option selected="true">Add as sets of 3 pics</option>
+                        <option>Add as sets of 4 pics</option>
+                        <option>Add as sets of 5 pics</option>
+                        <option>Add as sets of 6 pics</option>
+
+                    </select>
+                    <br/>
+                    <button class="btn btn-sm">Add</button>
+                </div>
+            }
+
+</td>
+        
+        <td>
+            <a href="#">
+                @Html.DisplayFor(modelItem => item.ViewToken)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSales)
+        </td>
+    </tr>
+}
+
+</table>

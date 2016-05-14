@@ -1,0 +1,105 @@
+﻿@model List<WebApplication.Models.Letter>
+
+@{
+    ViewBag.Title = "Photo Letters";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<table style="width: 100%;" class="tableLetter">
+
+    @foreach (var item in Model)
+    {
+        var imgWidthHeight = "";
+        var imgWidth = 100;
+        switch (item.PhotoIds.Count)
+        {
+            case 1:
+
+                break;
+            case 2:
+                //imgWidthHeight = string.Format("width: {0}mm;",1);
+                break;
+            case 3:
+                imgWidthHeight = string.Format("width: {0}mm;", 25);
+                break;
+            case 4:
+                imgWidthHeight = string.Format("width: {0}mm;", 25);
+                break;
+            case 5:
+                imgWidthHeight = string.Format("width: {0}mm;", 25);
+                break;
+            case 6:
+                imgWidthHeight = string.Format("width: {0}mm;", 18);
+                break;
+            case 7:
+                imgWidthHeight = string.Format("width: {0}mm;", 18);
+                break;
+            case 8:
+                imgWidthHeight = string.Format("width: {0}mm;", 18);
+                break;
+            case 9:
+                imgWidthHeight = string.Format("width: {0}mm;", 18);
+                break;
+            case 10:
+                imgWidthHeight = string.Format("width: {0}mm;", 18);
+                break;
+        }
+
+        <tr>
+            <td colspan="3">
+                <img class="letterLogo" src="~/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+
+            </td>
+
+            <td>
+
+                @foreach (var photoId in item.PhotoIds)
+                {
+                    <img style="@imgWidthHeight" class="letterImage" src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photoId })" />
+                }
+
+            </td>
+            <td class="viewingCode">
+                your viewing code
+                @item.ViewingCode
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <img class="letterTabImg" src="~/Images/lapTopMobileTablet.png" />
+
+            </td>
+            <td colspan="2">
+                Thank you for letting me capture your loved one's photo. I hope you like the images.
+                <br />As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+                <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+                <br />
+                <strong>
+                    Each image will only cost £ @item.PricePerPhoto, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br /><br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+                <br />
+                <img src="~/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="3" class="letterFooter">
+                The simple and safe way to share, buy and download images using your secure viewing code
+            </td>
+        </tr>
+
+    }
+
+</table>

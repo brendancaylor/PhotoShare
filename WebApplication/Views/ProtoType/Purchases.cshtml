@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication.Models.DbPhotoSale>
+@{
+    ViewBag.Title = "Purchases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Purchases</h2>
+
+<p>
+    @Html.ActionLink("Back to photos", "Photos")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleToken)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyersEmail)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaleToken)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyersEmail)
+        </td>
+
+    </tr>
+}
+
+</table>

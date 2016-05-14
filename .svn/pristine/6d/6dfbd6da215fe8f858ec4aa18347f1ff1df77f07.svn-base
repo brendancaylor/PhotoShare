@@ -1,0 +1,51 @@
+﻿@model List<PhotoShare.Dto.vwPhotosAndSale>
+@{
+    ViewBag.Title = "ViewCode";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+@section header {
+    <h1>MI TRUE IMAGE</h1>
+    <p>
+        Buy and download your photos
+    </p>
+    @using (Html.BeginForm())
+    {
+        <input type="text" id="viewingcode" name="viewingcode" placeholder="Enter your code" style="width: 180px; padding: 10px; margin-right: 20px;" />
+        <input type="submit" value="Go" style="padding: 10px; font-size: 1em;" />
+    }
+}
+
+@foreach (var photo in Model)
+{
+    <!-- Thumb Items -->
+    
+    <article class="item thumb" data-width="@photo.Width">
+        <h2>
+            <span style="font-size: 0.7em;">
+                @photo.DbName
+            </span>
+            <span style="float: right;" onclick="">
+                @if (string.IsNullOrEmpty(photo.SaleCode))
+                {
+                    <span>buy</span>
+                }
+                else
+                {
+                    <a href="@photo.DbShareUrl" target="Download">
+                        Download
+                    </a>
+
+                }
+            </span>
+        </h2>
+        <a href="@Url.Action("DownloadLargeImage", "Dropbox", new { id = photo.MtDbPhotoId })" class="image">
+            <img src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photo.MtDbPhotoId })" alt="@photo.DbName">
+            <div class="mycaption">
+                @photo.DbName
+            </div>
+        </a>
+    </article>
+    
+}
+

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WebApplication.Models.DbPhoto>
+
+@{
+    ViewBag.Title = "Photos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Photos</h2>
+
+<p>
+    @Html.ActionLink("Back to folder", "Folders")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Thumb
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Purchases
+        </th>
+        <th>
+            Share Url
+        </th>
+        <th>
+            View Token
+        </th>
+        <th>
+            Total Sold
+        </th>
+        <th>
+            Total Sales
+        </th>
+
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+
+            <img src="~/Images/01.jpg" class="image" style="width: 100px;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DbName)
+        </td>
+        <td>
+            <a href="#">
+                @Html.ActionLink("View", "Purchases")
+            </a>
+        </td>
+        <td>
+            <a href="#">
+                @Html.DisplayFor(modelItem => item.DbShareUrl)
+            </a>
+        </td>
+        <td>
+            <a href="http://localhost:54176/view.html" target="publicview">
+                @Html.DisplayFor(modelItem => item.ViewToken)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSales)
+        </td>
+        <!--
+
+        
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+            -->
+
+    </tr>
+}
+
+</table>

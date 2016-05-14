@@ -1,0 +1,77 @@
+﻿@model List<WebApplication.Models.Letter>
+
+@{
+    ViewBag.Title = "Photo Letters";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+
+
+    @foreach (var item in Model)
+    {
+        var classWidthHeight = string.Format("letterImage{0}", item.PhotoIds.Count);
+        var classWidthHeightBlurb = string.Format("letterBlurbImage{0}", item.PhotoIds.Count);
+
+        <table style="" class="tableLetter pagebreak">
+
+            <tr style="width: 1mm;">
+                <td colspan="2">
+                    <img style="width: 21cm;" src="~/Images/letterLogo.png" />
+                </td>
+            </tr>
+            <tr>
+                <td class="letterTabImg" rowspan="2">
+
+                    <br />
+                    <strong>Instructions</strong>
+                    <br />
+                    To view your images please visit the address above and enter your unique viewing code.
+
+                    <div style="margin: 30px 0;">
+                        <img class="letterTabImg" src="~/Images/lapTopMobileTablet.png" />
+                    </div>
+
+                    <div style="margin: 30px 0;" class="viewingCode">
+                        your viewing code
+                        @item.ViewingCode
+                    </div>
+                </td>
+
+                <td>
+
+                    @foreach (var photoId in item.PhotoIds)
+                    {
+                        <img class="letterImage @classWidthHeight" src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photoId })" />
+                    }
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td colspan="2" class="@classWidthHeightBlurb">
+                    Thank you for letting me capture your loved one's photo. I hope you like the images.
+                    <br />As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality
+                    through fun and natural photography. With simple and safe to use technology, you can now view your images
+                    online and download them digitally in high resolution for those all important prints!
+                    <br />
+                    <strong>
+                        Each image will only cost £ @item.PricePerPhoto, this gives you a high resolution image and full rights to print yourself
+                    </strong>
+                    <br />
+                    Happy downloading :-)
+                    <br />
+                    Best wishes
+                    <br />
+                    <img src="~/Images/karenSig.png" />
+                </td>
+            </tr>
+            <tr class="page-break">
+                <td colspan="2" style="height: 0;"></td>
+            </tr>
+
+        </table>
+    }
+
+        

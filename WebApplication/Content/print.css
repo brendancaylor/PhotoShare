@@ -1,0 +1,179 @@
+﻿@media print {
+
+    html, body {
+        width: 210mm;
+        height: 148.5mm;
+        /*
+        
+        width: 297mm;
+        height: 148.5mm;
+        width: 210mm;
+        height: 297mm;
+                        */
+    }
+
+    .letterPageBreak {
+        page-break-after: always;
+    }
+
+    .pagebreak {
+        page-break-after: always;
+    }
+
+    /*
+    @page {
+        size: A5;
+        margin: 5mm;
+        
+    
+  
+  width: 297mm;
+  height: 148.5mm;
+      
+    }
+            */
+
+}
+    
+
+    .tableLetter {
+        font-family: Lato;
+        font-size: 1em;
+        line-height: 1.4em;
+    }
+
+    td {
+        margin: 0;
+        padding: 0;
+        height: 1mm;
+        vertical-align: top;
+    }
+
+    .letterImage {
+        margin: 1mm 2mm;
+        padding: 0;
+        /*
+        max-height: 30mm;
+        border: solid 1mm #798289;*/
+    }
+
+    .viewingCode {
+        font-weight: bold;
+        font-family: Oswald;
+        color: #798289 !important;
+        font-size: 30px;
+        line-height: 1.5em;
+    }
+
+    .letterTabImg {
+        width: 50mm;
+    }
+
+    .letterImage1 {
+        width: 100mm;
+    }
+
+    .letterBlurbImage1 {
+        font-size: 0.8em;
+    }
+
+    .letterImage2 {
+        width: 85mm;
+    }
+
+    .letterBlurbImage2 {
+        font-size: 0.8em;
+    }
+
+    .letterImage3 {
+        width: 65mm;
+        margin: 10mm 0;
+    }
+
+    .letterBlurbImage3 {
+        font-size: 0.9em;
+        line-height: 1.5em;
+    }
+
+    .letterImage4 {
+        width: 55mm;
+    }
+
+    .letterBlurbImage4 {
+        font-size: 0.8em;
+    }
+
+    .letterImage5 {
+        width: 55mm;
+    }
+
+    .letterBlurbImage5 {
+        font-size: 0.8em;
+    }
+
+    .letterImage6 {
+        width: 55mm;
+    }
+
+    .letterBlurbImage6 {
+        font-size: 0.8em;
+    }
+
+    .letterImage7 {
+        width: 40mm;
+    }
+
+    .letterBlurbImage7 {
+        font-size: 1em;
+    }
+
+    .letterImage8 {
+        height: 35mm;
+    }
+
+    .letterBlurbImage8 {
+        font-size: 1em;
+    }
+
+    .letterImage9 {
+        width: 40mm;
+        margin: 0.5mm;
+    }
+
+    .letterBlurbImage9 {
+        font-size: 0.7em;
+        line-height: 1.4em;
+    }
+
+    .letterImage10 {
+        width: 40mm;
+        margin: 0.5mm;
+    }
+
+    .letterBlurbImage10 {
+        font-size: 0.7em;
+        line-height: 1.4em;
+    }
+
+
+    .letterImage11 {
+        width: 40mm;
+        margin: 0.5mm;
+    }
+
+    .letterBlurbImage11 {
+        font-size: 0.7em;
+        line-height: 1.4em;
+    }
+
+
+    .letterImage12 {
+        width: 40mm;
+        margin: 0.5mm;
+    }
+
+    .letterBlurbImage12 {
+        font-size: 0.7em;
+        line-height: 1.4em;
+    }
+}

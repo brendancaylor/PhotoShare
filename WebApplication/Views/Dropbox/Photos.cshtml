@@ -1,0 +1,86 @@
+﻿@model IEnumerable<PhotoShare.Dto.MtDbPhoto>
+
+@{
+    ViewBag.Title = "Photos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Photos</h2>
+
+<div>
+    @Html.ActionLink("Back to Folders", "Folders")
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Thumb
+        </th>
+        <th>
+            Name
+        </th>
+        <th>PayPal Id</th>
+        <th>
+            Purchases
+        </th>
+        <th>
+            Path
+        </th>
+        <th>
+            Share Url
+        </th>
+        <th>
+            Viewing Code
+        </th>
+        <th>
+            Total Sold
+        </th>
+        <th>
+            Total Sales
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("DownloadLargeImage", "Dropbox", new {id = item.Id})" target="largePhoto">
+                <img style="height: 40px;" src="@Url.Action("DownloadSmallImage", "Dropbox", new {id = item.Id})" class="image" />
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DbName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayPalId)
+        </td>
+        <td>
+            @Html.ActionLink("View", "Purchases", new {id = item.Id})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DbPath)
+        </td>
+        <td>
+            <a href="@item.DbShareUrl" target="publicView">
+                @Html.DisplayFor(modelItem => item.DbShareUrl)
+            </a>
+        </td>
+        <td>
+            <a href="@Url.Action("ViewCode", "Public", new { viewingcode = item.ViewingCode })" target="dbxShare">
+                @Html.DisplayFor(modelItem => item.ViewingCode)
+            </a>
+        </td>
+        <td style="font-size: 1.5em;">
+            @Html.DisplayFor(modelItem => item.TotalSold)
+        </td>
+        <td style="font-size: 1.5em;">
+            £ @Html.DisplayFor(modelItem => item.TotalSales)
+        </td>
+    </tr>
+}
+
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to Folders", "Folders")
+</div>

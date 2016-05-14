@@ -1,0 +1,91 @@
+﻿@model WebApplication.Models.Folder
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Settings</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>
+            @Html.DisplayFor(model => model.Name)
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.IsIncluded)
+        @Html.HiddenFor(model => model.IsOnlyInDb)
+        
+        @Html.HiddenFor(model => model.TotalSold)
+        @Html.HiddenFor(model => model.TotalSales)
+        @Html.HiddenFor(model => model.Name)
+        
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ViewingCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ViewingCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ViewingCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PricePerPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PricePerPhoto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PricePerPhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalSold, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TotalSold)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalSales, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TotalSales)
+            </div>
+        </div>
+        @if (Model.TotalSales == 0)
+        {
+            <div class="form-group">
+                <label for="SetsOf" class="control-label col-md-2">Sets of</label>
+
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SetsOf, Model.SetOptions, null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SetsOf, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.SetsOf, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.SetsOf)
+                    @Html.HiddenFor(model => model.SetsOf)
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Folders", "Folders")
+</div>

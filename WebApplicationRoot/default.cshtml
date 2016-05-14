@@ -1,0 +1,23 @@
+﻿@using Microsoft.Web.Infrastructure
+@{
+    Layout = null;
+    var url = HttpContext.Current.Request.Url;
+    if (url.AbsoluteUri.Contains("mi-photo"))
+    {
+        Response.Redirect("http://www.mi-photoshare.com/photoshare/Public/ViewCode");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+    
+    </div>
+</body>
+</html>

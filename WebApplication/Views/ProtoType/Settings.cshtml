@@ -1,0 +1,81 @@
+﻿@model WebApplication.Models.DbFolder
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>
+            @Html.DisplayFor(model => model.DbName)
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PricePerPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PricePerPhoto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PricePerPhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Foldertype">Folder type</label>
+            <div class="col-md-10">
+                <select class="form-control">
+                    <option>View entire folder</option>
+                    <option>View sets of 1 pic</option>
+                    <option>View sets of 2 pics</option>
+                    <option selected="true">View sets of 3 pics</option>
+                    <option>View sets of 4 pics</option>
+                    <option>View sets of 5 pics</option>
+                    <option>View sets of 6 pics</option>
+
+                </select>
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ViewToken, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <a href="http://localhost:54176/view.html" target="viewFolder">
+                    @Html.DisplayFor(model => model.ViewToken)
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalSold, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TotalSold)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalSales, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TotalSales)
+            </div>
+        </div>
+        
+
+
+        
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to folders", "folders")
+</div>

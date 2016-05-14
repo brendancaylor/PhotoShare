@@ -1,0 +1,25 @@
+﻿CREATE VIEW [dbo].[vwPhotosAndSales]
+	AS 
+
+
+	SELECT
+	
+	NEWID() AS Id
+	,  MtDbPhoto.Id AS MtDbPhotoId
+	,  MtDbPhoto.DbName
+	,  MtDbPhoto.ViewingCode
+	,  MtDbPhoto.LargeImage
+	,  MtDbPhoto.SmallImage
+	,  MtDbPhoto.PayPalId
+	,  MtDbPhoto.Width
+	,  MtDbPhoto.MtDbFolderId
+	,  MtDbPhoto.DbPath
+	,  MtDbPhoto.DbShareUrl
+	,  MtDbPhoto.TotalSold
+	,  MtDbPhoto.TotalSales
+	,  MtDbPhotoSale.SaleCode
+
+
+	FROM MtDbPhoto
+	
+	LEFT OUTER JOIN MtDbPhotoSale ON MtDbPhoto.Id = MtDbPhotoSale.MtDbPhotoId

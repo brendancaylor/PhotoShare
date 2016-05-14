@@ -1,0 +1,110 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{9C1B08A7-571B-4A68-80C2-692917437D47}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "html5up-lens", "http://localhost:53551", "{6180B57C-8D2D-4D8A-A20E-52B3CE0E6BB2}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53551"
+		Debug.AspNetCompiler.PhysicalPath = "html5up-lens\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53551\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53551"
+		Release.AspNetCompiler.PhysicalPath = "html5up-lens\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53551\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "html5up-lens\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "html5up-parallelism", "http://localhost:54176", "{3A587C61-6F40-4C13-945E-833F94A66E6F}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54176"
+		Debug.AspNetCompiler.PhysicalPath = "html5up-parallelism\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54176\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54176"
+		Release.AspNetCompiler.PhysicalPath = "html5up-parallelism\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54176\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "html5up-parallelism\"
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoShare.DataLayer", "PhotoShare.DataLayer\PhotoShare.DataLayer.csproj", "{771A2195-EB5E-433F-AA8B-884453110900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoShare.BusinessLogic", "PhotoShare.BusinessLogic\PhotoShare.BusinessLogic.csproj", "{B17312B3-160A-43C1-9FD1-BD0BD2AB413C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoShare.Dto", "PhotoShare.Dto\PhotoShare.Dto.csproj", "{3409F54E-0971-4810-AE20-114C781D3CCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{2F0DE296-1E2E-419D-ADF4-602E6F49BAFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationRoot", "WebApplicationRoot\WebApplicationRoot.csproj", "{FC4A95A6-9551-4873-ABCB-6DACA71EAC1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C1B08A7-571B-4A68-80C2-692917437D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1B08A7-571B-4A68-80C2-692917437D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1B08A7-571B-4A68-80C2-692917437D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1B08A7-571B-4A68-80C2-692917437D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6180B57C-8D2D-4D8A-A20E-52B3CE0E6BB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6180B57C-8D2D-4D8A-A20E-52B3CE0E6BB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6180B57C-8D2D-4D8A-A20E-52B3CE0E6BB2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6180B57C-8D2D-4D8A-A20E-52B3CE0E6BB2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3A587C61-6F40-4C13-945E-833F94A66E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A587C61-6F40-4C13-945E-833F94A66E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A587C61-6F40-4C13-945E-833F94A66E6F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A587C61-6F40-4C13-945E-833F94A66E6F}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB49AEAF-A31C-4FD2-9D86-850A11B4EF32}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{771A2195-EB5E-433F-AA8B-884453110900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{771A2195-EB5E-433F-AA8B-884453110900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771A2195-EB5E-433F-AA8B-884453110900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{771A2195-EB5E-433F-AA8B-884453110900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B17312B3-160A-43C1-9FD1-BD0BD2AB413C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B17312B3-160A-43C1-9FD1-BD0BD2AB413C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B17312B3-160A-43C1-9FD1-BD0BD2AB413C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B17312B3-160A-43C1-9FD1-BD0BD2AB413C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3409F54E-0971-4810-AE20-114C781D3CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3409F54E-0971-4810-AE20-114C781D3CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3409F54E-0971-4810-AE20-114C781D3CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3409F54E-0971-4810-AE20-114C781D3CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0DE296-1E2E-419D-ADF4-602E6F49BAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0DE296-1E2E-419D-ADF4-602E6F49BAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0DE296-1E2E-419D-ADF4-602E6F49BAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0DE296-1E2E-419D-ADF4-602E6F49BAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4A95A6-9551-4873-ABCB-6DACA71EAC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4A95A6-9551-4873-ABCB-6DACA71EAC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4A95A6-9551-4873-ABCB-6DACA71EAC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4A95A6-9551-4873-ABCB-6DACA71EAC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

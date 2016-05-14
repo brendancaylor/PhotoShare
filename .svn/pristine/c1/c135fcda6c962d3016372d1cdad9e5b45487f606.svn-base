@@ -1,0 +1,66 @@
+﻿@media print {
+    
+    html, body {
+        /*
+        width: 297mm;
+        height: 148.5mm;
+        width: 210mm;
+        height: 297mm;
+                        */
+
+      }
+
+    .letterPageBreak {
+        page-break-after: always;
+    }
+}
+
+@page {
+  /*size: A5;*/
+
+  margin: 10mm;
+  /*
+  width: 297mm;
+  height: 148.5mm;
+      */
+}
+
+table tr.page-break{page-break-after:always} 
+.tableLetter {
+    font-family: Lato;
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
+td {
+    margin: 0;
+    padding: 0;
+    height: 1mm;
+    vertical-align: top;
+}
+
+.letterImage {
+    float: left;
+    margin: 0 2mm 2mm 0;
+    padding: 0;
+    max-height: 30mm;
+    /*border: solid 1mm #798289;*/
+}
+
+.viewingCode {
+    font-weight: bold;
+    font-family: Oswald;
+    color: #798289 !important;
+    font-size: 30px;
+    line-height: 1.5em;
+}
+
+.letterTabImg {
+    width: 90mm;
+}
+
+.letterFooter {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 3mm;
+}

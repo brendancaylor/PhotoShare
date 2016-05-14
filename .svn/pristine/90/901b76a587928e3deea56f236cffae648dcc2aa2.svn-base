@@ -1,0 +1,29 @@
+﻿@model List<PhotoShare.Dto.MtDbPhoto>
+@{
+    ViewBag.Title = "ViewCode";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+@section header {
+    Test
+}
+
+@foreach (var photo in Model)
+{
+    <!-- Thumb Items -->
+    
+    <article class="item thumb" data-width="200">
+        <h2>
+            @photo.DbName
+            <span style="float: right;" onclick="">button</span>
+        </h2>
+        <a href="@Url.Action("DownloadLargeImage", "Dropbox", new { id = photo.Id })" class="image">
+            <img src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photo.Id })" alt="@photo.DbName">
+            <div class="mycaption">
+                @photo.DbName
+            </div>
+        </a>
+    </article>
+    
+}
+

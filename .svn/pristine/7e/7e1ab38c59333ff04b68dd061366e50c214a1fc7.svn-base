@@ -1,0 +1,495 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Letters</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+
+
+    <link href="/Content/print.css" rel="stylesheet" />
+</head>
+<body>
+
+
+
+
+    <table style="width: 100%;" class="tableLetter">
+
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    1M09A
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/d6c3b762-ae6f-4878-8c9e-fe01a3a18772" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/ef9c6fee-84d3-42af-a8fd-ad6e17cce311" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/53608610-8ba0-4655-9291-fbcc4e1e61db" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    34522
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/7f358f96-283e-4cd2-b2a8-c5a1d2ebde2f" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    8POVA
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/0faedd9b-c9db-4735-b595-629f938fbb62" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/c50b18e1-6191-4945-a4ed-9706aab6de30" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    GTCHA
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/e6331c09-5919-4df6-ad7a-4bdfb81d29f1" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/751d0238-170f-4c19-89c9-96df472d473d" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/994ae392-0fe3-4c50-b86f-3e98e18b881e" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/994ae392-0fe3-4c50-b86f-3e98e18b881e" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    NW03A
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/bb811da8-cf18-41bb-99b6-10b9ffc41780" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/f90a8448-6fe6-4763-b2b8-56ff417ee60f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/09118846-2614-44c0-a132-8a9f2e7a8322" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/f90a8448-6fe6-4763-b2b8-56ff417ee60f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/09118846-2614-44c0-a132-8a9f2e7a8322" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    PXTU2
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/4a913e7d-de10-49c4-8cb2-2de15759a4d4" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/4018acdc-97d6-4789-a9ff-549b91592f9f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/a5645854-0728-4e7e-b353-66696c2c4ef1" />
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/4a913e7d-de10-49c4-8cb2-2de15759a4d4" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/4018acdc-97d6-4789-a9ff-549b91592f9f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/a5645854-0728-4e7e-b353-66696c2c4ef1" />
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    SIIWI
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/fccd818a-2f0d-481e-8730-db862e95ae6e" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/e76cb924-c551-488a-8d1e-0e4b7a862e9f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/9b75a5e2-ef79-4950-852d-6cd9e34b5ca7" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/fccd818a-2f0d-481e-8730-db862e95ae6e" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/e76cb924-c551-488a-8d1e-0e4b7a862e9f" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/9b75a5e2-ef79-4950-852d-6cd9e34b5ca7" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/9b75a5e2-ef79-4950-852d-6cd9e34b5ca7" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    W0HG2
+                </div>
+            </td>
+
+            <td>
+
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/a921a592-c960-4c97-b981-c1668f5373a9" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/3ae919b4-d075-4e0f-9334-05abc228f68b" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/bbe88acc-83b3-4247-a42f-415919cf17c9" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/a921a592-c960-4c97-b981-c1668f5373a9" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/3ae919b4-d075-4e0f-9334-05abc228f68b" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/bbe88acc-83b3-4247-a42f-415919cf17c9" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/3ae919b4-d075-4e0f-9334-05abc228f68b" />
+                <img style="width: 65mm;" class="letterImage" src="/Dropbox/DownloadSmallImage/bbe88acc-83b3-4247-a42f-415919cf17c9" />
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <img src="/Images/letterLogo.png" />
+            </td>
+        </tr>
+        <tr>
+            <td class="letterTabImg" rowspan="2">
+
+                <br />
+                <strong>Instructions</strong>
+                <br />
+                To view your images please visit the address above and enter your unique viewing code.
+                
+            <div style="margin: 30px 0;">
+                <img class="letterTabImg" src="/Images/lapTopMobileTablet.png" />
+            </div>
+
+                <div style="margin: 30px 0;" class="viewingCode">
+                    your viewing code
+                    ZL6II
+                </div>
+            </td>
+
+            <td>
+
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+                <img style="" class="letterImage" src="/Dropbox/DownloadSmallImage/f859bc6a-e34c-417d-83ba-1ac7637917e9" />
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5mm 0 0 0;">Thank you for letting me capture your loved one's photo. I hope you like the images.
+            <br />
+                As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality through fun and natural photography.
+            <br />
+                With simple and safe to use technology, you can now view your images online and download them digitally in high resolution for those all important prints!
+            <br />
+                <strong>Each image will only cost £ 6.00, this gives you a high resolution image and full rights to print yourself
+                </strong>
+                <br />
+                Happy downloading :-) &nbsp;&nbsp;&nbsp;Best wishes
+            <br />
+                <img src="/Images/karenSig.png" />
+            </td>
+        </tr>
+        <tr class="page-break">
+            <td colspan="2" style="height: 1mm;"></td>
+        </tr>
+
+    </table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<PhotoShare.Dto.MtDbPhoto>
+
+@{
+    ViewBag.Title = "Photo Letters";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="pageBreak">
+
+        <img style="width: @item.Width px;" src="@Url.Action("DownloadSmallImage", "Dropbox", new {id = item.Id})" class="image" />
+        <br />
+        @Html.DisplayFor(modelItem => item.ViewingCode)
+
+    </div>
+}
+
+

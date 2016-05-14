@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using PhotoShare.BusinessLogic;
+using PhotoShare.Dto;
+using WebApplication.Models;
+
+namespace WebApplication.Controllers
+{
+    public class PayPalController : Controller
+    {
+        // GET: PayPal
+        public ActionResult TestButton()
+        {
+            return View();
+        }
+
+        public EmptyResult ipn(PayPalCheckoutInfo payPalCheckoutInfo)
+        {
+            GeneralLogic logic = new GeneralLogic();
+
+            var mtIpnTestnew = new MtIpnTest()
+            {
+                Id = Guid.NewGuid(),
+                IpnMessage = ""
+            };
+
+            PayPalListenerModel model = new PayPalListenerModel();
+            model._PayPalCheckoutInfo = payPalCheckoutInfo;
+            byte[] parameters = Request.BinaryRead(Request.ContentLength);
+
+            if (parameters != null)
+            {
+                model.GetStatus(parameters);
+            }
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var json = jsonSerializer.Serialize(model._PayPalCheckoutInfo);
+
+            if (model.Status == "VERIFIED")
+            {
+
+                //check that the payment_status is Completed                 
+                if (model._PayPalCheckoutInfo.payment_status.ToLower() == "completed")
+                {
+                    mtIpnTestnew.IpnMessage = string.Format("Completed! | json {0}", json);
+                    
+                    //check that txn_id has not been previously processed to prevent duplicates                      
+                    //check that receiver_email is your Primary PayPal email                                          
+
+                    var photo = logic.GetMtDbPhotoIncludeByPayPalId(model._PayPalCheckoutInfo.item_number1);
+                    if (photo != null)
+                    {
+                        // id equals a valid photo
+                        if (photo.MtDbFolder.PricePerPhoto.HasValue
+                            && photo.MtDbFolder.PricePerPhoto.Value.ToString() == model._PayPalCheckoutInfo.mc_gross
+                            && model._PayPalCheckoutInfo.mc_currency == "GBP"
+                            )
+                        {
+                            // they've paid the correct amount
+                            var sale = new PhotoShare.Dto.MtDbPhotoSale()
+                            {
+                                Id = Guid.NewGuid(),
+                                BuyersEmail = model._PayPalCheckoutInfo.payer_email,
+                                DatePaid = DateTime.Now,
+                                IpnMessage = json,
+                                MtDbPhotoId = photo.Id,
+                                PricePaid = photo.MtDbFolder.PricePerPhoto.Value,
+                                SaleCode = GeneralLogic.RandomString(8)
+                            };
+                            logic.AddSale(sale);
+                            // TODO email everyone !!
+                        }
+                    }
+
+                }
+                else if (model.Status == "INVALID")
+                {
+                    mtIpnTestnew.IpnMessage = string.Format("INVALID! | json {0}", json);
+                    //log for manual investigation             
+                }
+                else
+                {
+                    mtIpnTestnew.IpnMessage = string.Format("{0} | json {1}", model.Status, json);
+                    //log response/ipn data for manual investigation             
+                }
+
+            }
+            else
+            {
+                mtIpnTestnew.IpnMessage = string.Format("Not verified! | json {0}", json);
+            }
+            logic.AddMtIpnTest(mtIpnTestnew);
+
+            return new EmptyResult();
+        } 
+
+    }
+}

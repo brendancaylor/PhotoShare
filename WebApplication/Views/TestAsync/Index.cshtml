@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+@section scripts {
+<script type="text/javascript">
+
+    function updateMonitor(taskId, status) {
+        $("#" + taskId).html("Task [" + taskId + "]: " + status);
+    }
+
+    $(function () {
+
+
+        var pathToRoot = '@Url.Content("~")';
+            
+
+        $("#start").click(function (e) {
+            e.preventDefault();
+
+            $.post(pathToRoot + "/TestAsync/start", {}, function (taskId) {
+
+                // Init monitors
+                $("#monitors").append($("<p id='" + taskId + "'/>"));
+                updateMonitor(taskId, "Started");
+
+                // Periodically update monitors
+                var intervalId = setInterval(function () {
+
+                    $.post(pathToRoot + "/TestAsync/Progress", { id: taskId }, function (progress) {
+                        if (progress >= 100) {
+                            updateMonitor(taskId, "Completed");
+                            clearInterval(intervalId);
+                        } else {
+                            updateMonitor(taskId, progress + "%");
+                        }
+                    });
+
+                }, 100);
+
+            });
+        });
+
+    });
+</script>
+
+}
+
+    <a href="#" id="start">Start new task &hellip;</a>
+
+<div id="monitors"></div>

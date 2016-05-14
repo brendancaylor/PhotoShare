@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PhotoShare.Dto.MtDbPhotoSale>
+
+@{
+    ViewBag.Title = "Purchases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Purchases</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SaleCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyersEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaleCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyersEmail)
+        </td>
+
+    </tr>
+}
+
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to Folders", "Folders")
+</div>

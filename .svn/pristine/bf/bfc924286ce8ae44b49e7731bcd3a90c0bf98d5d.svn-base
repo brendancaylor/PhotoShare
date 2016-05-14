@@ -1,0 +1,96 @@
+﻿@model List<PhotoShare.Dto.vwPhotosAndSale>
+@{
+    ViewBag.Title = "ViewCode";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+@section header {
+    <h1>MI TRUE IMAGE</h1>
+    <p>
+        Buy and download your photos
+    </p>
+    @using (Html.BeginForm(FormMethod.Get))
+    {
+        <input type="text" id="viewingcode" name="viewingcode" placeholder="Enter your code" style="width: 180px; padding: 10px; margin-right: 20px;" />
+        <input type="submit" value="Go" style="padding: 10px; font-size: 1em;" />
+    }
+}
+
+@foreach (var photo in Model)
+{
+    <!-- Thumb Items -->
+    
+    <article class="item thumb" data-width="@photo.Width">
+        <h2>
+    <!--
+        <span style="font-size: 0.7em;">
+            @photo.DbName
+        </span>
+        -->
+            <span style="float: right;">
+                @if (string.IsNullOrEmpty(photo.SaleCode))
+                {
+                    <span onclick="submitPayPal('mi-photo', '@photo.PayPalId', '@photo.PricePerPhoto')" style="cursor: pointer">buy</span>
+                }
+                else
+                {
+                    <a href="@photo.DbShareUrl" target="Download">
+                        Download
+                    </a>
+                }
+            </span>
+        </h2>
+        <a href="@Url.Action("DownloadLargeImage", "Dropbox", new { id = photo.MtDbPhotoId })" class="image">
+            <img src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photo.MtDbPhotoId })" alt="@photo.DbName">
+            <div class="mycaption">
+                &nbsp;
+                <!--@photo.DbName-->
+            </div>
+        </a>
+    </article>
+    
+}
+
+<div style="display: none;">
+    
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalForm">
+        <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="business" value="brendan.caylor@gmail.com" />
+        <input type="hidden" name="item_name" id="item_name" value="" />
+        <input type="hidden" name="invoice" id="invoice" value="">
+        <input type="hidden" name="item_number" id="item_number" value="">
+        <input type="hidden" name="amount" id="amount" value="" />
+        <input type="hidden" name="return" value="http://www.mi-photoshare.com/photoshare/public/viewcode" />
+        <input type="hidden" name="currency_code" value="GBP" />
+        <input name="notify_url" value="http://www.mi-photoshare.com/photoshare/paypal/ipn" type="hidden">
+        <button type="submit" class="button small">Buy</button>
+    </form>
+
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        function submitPayPal(itemname, itemnumber, amount) {
+
+            var invoice = randomString(8, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+            $("#item_name").val(itemname);
+            $("#invoice").val(invoice);
+            $("#item_number").val(itemnumber);
+            $("#amount").val(amount);
+            $("#paypalForm").submit();
+        }
+        
+
+        function randomString(length, chars) {
+            var result = '';
+            for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+            return result;
+        }
+        var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+
+    </script>
+
+}
