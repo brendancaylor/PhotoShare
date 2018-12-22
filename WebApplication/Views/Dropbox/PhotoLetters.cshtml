@@ -9,14 +9,14 @@
 
     @foreach (var item in Model)
     {
-        var classWidthHeight = string.Format("letterImage{0}", item.PhotoIds.Count);
-        var classWidthHeightBlurb = string.Format("letterBlurbImage{0}", item.PhotoIds.Count);
+        var classWidthHeight = string.Format("letterImage{0}", item.Photos.Count);
+        var classWidthHeightBlurb = string.Format("letterBlurbImage{0}", item.Photos.Count);
 
         <table style="" class="tableLetter pagebreak">
 
             <tr style="width: 1mm;">
                 <td colspan="2">
-                    <img style="width: 21cm;" src="~/Images/letterLogo.png" />
+                    <img style="width: 21cm;" src="~/Images/letterLogo2.png" />
                 </td>
             </tr>
             <tr>
@@ -39,9 +39,9 @@
 
                 <td>
 
-                    @foreach (var photoId in item.PhotoIds)
+                    @foreach (var photo in item.Photos)
                     {
-                        <img class="letterImage @classWidthHeight" src="@Url.Action("DownloadSmallImage", "Dropbox", new { id = photoId })" />
+                        <img class="letterImage @classWidthHeight" src="@Url.Action("DownloadLargeImageNoWaterMark", "Dropbox", new { id = photo.Id })" />
                     }
 
                 </td>
@@ -52,12 +52,19 @@
             <tr>
                 <td colspan="2" class="@classWidthHeightBlurb">
                     Thank you for letting me capture your loved one's photo. I hope you like the images.
-                    <br />As a portrait photographer based in Exeter, I try and capture the real smiles and your child's personality
-                    through fun and natural photography. With simple and safe to use technology, you can now view your images
+                    <br />As a portrait and wedding photographer based in Exeter, I try and capture the real 
+                    smiles and your child's personality through fun and natural photography. 
+                    <span class="extra-sentence">
+                        We had a lot of smiles talking about what each child wanted to be when they grew up, I hope this makes you smile too!
+                    </span>
+                    With simple and safe to use technology, you can now view your images
                     online and download them digitally in high resolution for those all important prints!
                     <br />
+                    Your images will be available to purchase until @Request.Params["date"].
+                    <br />
                     <strong>
-                        Each image will only cost £ @item.PricePerPhoto, this gives you a high resolution image and full rights to print yourself
+                        Each image will only cost £ @item.PricePerPhoto, this gives you a high resolution 
+                        image and full rights to print yourself
                     </strong>
                     <br />
                     Happy downloading :-)

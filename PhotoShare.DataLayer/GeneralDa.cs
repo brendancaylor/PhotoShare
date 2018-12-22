@@ -65,6 +65,28 @@ namespace PhotoShare.DataLayer
             }
         }
 
+        public List<Models.MtDbPhoto> GetAllPhotosByCodes(List<string> codes)
+        {
+            using (MtPhotosContext db = new MtPhotosContext())
+            {
+                var qry = db.MtDbPhotoes.Where(o => codes.Contains(o.ViewingCode))
+                    .Include(x => x.MtDbFolder);
+                var result = qry.ToList();
+                return result;
+            }
+        }
+
+        public List<Models.MtDbPhotoSale> GetAllPhotoSalessBySalesCodes(List<string> salesCodes)
+        {
+            using (MtPhotosContext db = new MtPhotosContext())
+            {
+                var qry = db.MtDbPhotoSales.Where(o => salesCodes.Contains(o.SaleCode))
+                    .Include(x => x.MtDbPhoto);
+                var result = qry.ToList();
+                return result;
+            }
+        }
+
         public List<Models.MtDbPhoto> GetAllPhotosByFolderViewingCode(string viewingCode)
         {
             using (MtPhotosContext db = new MtPhotosContext())

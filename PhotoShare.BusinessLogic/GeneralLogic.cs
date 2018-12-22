@@ -209,6 +209,19 @@ namespace PhotoShare.BusinessLogic
             return result;
         }
 
+        public List<Dto.MtDbPhoto> GetAllPhotosByCodes(List<string> codes)
+        {
+            List<Dto.MtDbPhoto> result = new List<Dto.MtDbPhoto>();
+            var data = new GeneralDa().GetAllPhotosByCodes(codes);
+            foreach (var mtDbPhoto in data.OrderBy(o => o.DbName))
+            {
+                var o = MapMtDbPhotoToDto(mtDbPhoto);
+                o.MtDbFolder = MapMtDbFolderToDto(mtDbPhoto.MtDbFolder);
+                result.Add(o);
+            }
+            return result;
+        }
+
         public List<Dto.MtDbPhoto> GetAllMtDbPhotoByFolder(Guid id)
         {
             List<Dto.MtDbPhoto> result = new List<Dto.MtDbPhoto>();
@@ -219,6 +232,20 @@ namespace PhotoShare.BusinessLogic
                 var o = MapMtDbPhotoToDto(mtDbPhoto);
                 o.MtDbFolder = MapMtDbFolderToDto(mtDbPhoto.MtDbFolder);
                 result.Add(o);
+            }
+            return result;
+        }
+
+        public List<Dto.MtDbPhotoSale> GetAllPhotoSalessBySalesCodes(List<string> salesCodes)
+        {
+            List<Dto.MtDbPhotoSale> result = new List<Dto.MtDbPhotoSale>();
+            var da = new GeneralDa();
+            var data = da.GetAllPhotoSalessBySalesCodes(salesCodes);
+            foreach (var mtDbPhotoSale in data)
+            {
+                var photoSale = MapMtDbPhotoSaleToDto(mtDbPhotoSale);
+                photoSale.MtDbPhoto = MapMtDbPhotoToDto(mtDbPhotoSale.MtDbPhoto);
+                result.Add(photoSale);
             }
             return result;
         }

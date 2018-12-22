@@ -14,6 +14,7 @@ using PhotoShare.BusinessLogic;
 using PhotoShare.Dto;
 using WebApplication.Models;
 using System.Threading;
+using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
@@ -88,27 +89,42 @@ namespace WebApplication.Controllers
             return View(data);
         }
 
-        public ActionResult PhotoLettersTest()
-        {
-            var model = new List<Letter>();
-            for (int i = 1; i <= 12; i++)
-            {
-                var photoIds = new List<Guid>();
 
-                for (int j = 1; j <= i; j++)
+        public ActionResult SelectedPhotoLetters()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult SelectedPhotoLetters(SelectedPhotoLettersModel model)
+        {
+            var codeList = model.Codes.Split(',').ToList();
+            var data = logic.GetAllPhotosByCodes(codeList);
+            var result = new List<Letter>();
+
+            foreach (var mtDbPhoto in data.OrderBy(o => o.ViewingCode))
+            {
+                var letter = result.FirstOrDefault(o => o.ViewingCode == mtDbPhoto.ViewingCode);
+                if (letter != null)
                 {
-                    //http://localhost:49316/Dropbox/DownloadSmallImage/9b75a5e2-ef79-4950-852d-6cd9e34b5ca7
-                    photoIds.Add(new Guid("9b75a5e2-ef79-4950-852d-6cd9e34b5ca7"));
+                    var photo = new PhotoModel() { Id = mtDbPhoto.Id, DbName = mtDbPhoto.DbName };
+                    letter.Photos.Add(photo);
                 }
-                model.Add(new Letter()
+                else
                 {
-                    PricePerPhoto = 6,
-                    ViewingCode = "abc123",
-                    PhotoIds = photoIds
-                });
+                    letter = new Letter()
+                    {
+                        PricePerPhoto = mtDbPhoto.MtDbFolder.PricePerPhoto.Value,
+                        ViewingCode = mtDbPhoto.ViewingCode
+                    };
+                    var photo = new PhotoModel() { Id = mtDbPhoto.Id, DbName = mtDbPhoto.DbName };
+                    letter.Photos.Add(photo);
+                    result.Add(letter);
+                }
             }
-            
-            return View("PhotoLetters", model);
+            return View("PhotoLetters", result);
+
         }
 
         public ActionResult PhotoLetters(Guid id)
@@ -117,23 +133,24 @@ namespace WebApplication.Controllers
             data = data.OrderBy(o => o.ViewingCode).ToList();
             var result = new List<Letter>();
 
-            foreach (var mtDbPhoto in data)
+            foreach (var mtDbPhoto in data.OrderBy(o => o.DbName).ThenBy(o => o.ViewingCode))
             {
                 var letter = result.FirstOrDefault(o => o.ViewingCode == mtDbPhoto.ViewingCode);
-
                 if (letter != null)
                 {
-                    letter.PhotoIds.Add(mtDbPhoto.Id);
+                    var photo = new PhotoModel() { Id = mtDbPhoto.Id, DbName = mtDbPhoto.DbName};
+                    letter.Photos.Add(photo);
                 }
                 else
                 {
-                    var r = new Letter()
+                    letter = new Letter()
                     {
                         PricePerPhoto = mtDbPhoto.MtDbFolder.PricePerPhoto.Value,
                         ViewingCode = mtDbPhoto.ViewingCode
                     };
-                    r.PhotoIds.Add(mtDbPhoto.Id);
-                    result.Add(r);
+                    var photo = new PhotoModel() { Id = mtDbPhoto.Id, DbName = mtDbPhoto.DbName };
+                    letter.Photos.Add(photo);
+                    result.Add(letter);
                 }
             }
             return View(result);
@@ -145,11 +162,36 @@ namespace WebApplication.Controllers
             return File(data.SmallImage, "image/jpeg");
         }
 
+        public ActionResult DownloadLargeImageNoWaterMark(Guid id)
+        {
+            var data = new GeneralLogic().GetMtDbPhoto(id);
+            WebImage image = new WebImage(data.LargeImage);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "right", "top", 20, 10);
+            var result = image.GetBytes("image/jpeg");
+            return File(result, "image/jpeg");
+        }
+
         public ActionResult DownloadLargeImage(Guid id)
         {
             var data = new GeneralLogic().GetMtDbPhoto(id);
             WebImage image = new WebImage(data.LargeImage);
-            image.AddImageWatermark(Server.MapPath("~/Images/watermark.png"),329, 300, "right", "top", 60, 10);
+
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "right", "top", 20, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "right", "middle", 20, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "right", "bottom", 20, 10);
+
+
+            /*
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "left", "top", 40, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "left", "middle", 40, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "left", "bottom", 40, 10);
+
+            
+            
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "center", "top", 40, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "center", "middle", 40, 10);
+            image.AddImageWatermark(Server.MapPath("~/Images/watermark2.png"), 315, 300, "center", "bottom", 40, 10);
+            */
             var result = image.GetBytes("image/jpeg");
             return File(result, "image/jpeg");
         }

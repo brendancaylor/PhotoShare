@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Mi-Photoshare";
     Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+    var photoAmount = Model.FirstOrDefault().PricePerPhoto;
+    if (photoAmount == null)
+    {
+        photoAmount = 0;
+    }
+
 }
 
 @section header {
@@ -9,48 +15,56 @@
         MI TRUE IMAGE
     </h1>
     <p>
-        Buy and download your photos    
+        Buy and download your photos
     </p>
 
     @using (Html.BeginForm("viewcode", "public", FormMethod.Get))
-    
+
     {
-        <input type="text" id="viewingcode" name="viewingcode" placeholder="Enter your code" style="width: 180px; padding: 10px; margin-right: 20px;" />
-        <input type="submit" value="Go" style="padding: 10px; font-size: 1em;" />
+        <input type="text" id="viewingcode" name="viewingcode" placeholder="Enter your code" style="width: 180px; padding: 5px; margin-right: 20px;" />
+        <input type="submit" value="Go" class="btn btn-default" />
+
+
     }
+    <p><a href="./Help">Watch this video to learn more</a></p>
 }
 
-@foreach (var photo in Model)
+@foreach (var photo in Model.OrderBy(o => o.DbPath))
 {
     <!-- Thumb Items -->
-    
+
     <article class="item thumb" data-width="@photo.Width">
         <h2>
-@if (string.IsNullOrEmpty(photo.SaleCode)
-     && photo.PricePerPhoto > 0
-    )
-{
-    <span>&pound;</span><span style="font-size: 1em; letter-spacing: 2px;">@photo.PricePerPhoto</span>
-}
+            @if (string.IsNullOrEmpty(photo.SaleCode)
+                 && photo.PricePerPhoto > 0
+                )
+            {
+                <span>&pound;</span><span style="font-size: 1em; letter-spacing: 2px;">@photo.PricePerPhoto</span>
+            }
             <span style="float: right;">
                 @if (string.IsNullOrEmpty(photo.SaleCode)
                      && photo.PricePerPhoto > 0
                     )
                 {
 
-                    <span id="buy_@photo.PayPalId" onclick="submitPayPal('mi-photo', '@photo.PayPalId', '@photo.PricePerPhoto')" style="cursor: pointer">buy</span>
-                    
+                    @*
+                        <span id="buy_@photo.PayPalId"
+                              onclick="submitPayPal('mi-photo', '@photo.PayPalId', '@photo.PricePerPhoto')"
+                              style="cursor: pointer">buy</span>
+                    *@
                     <!-- Rounded TWO -->
-                    <div class="roundedTwo" style="float: right;">
+                    <div class="_roundedTwo cursor" style="float: right;">
                         <input type="checkbox"
                                value="@photo.PayPalId"
                                id="roundedTwo_@photo.PayPalId"
                                name="selectedPhotos"
-                               />
-                        <label id="labelfor_@photo.PayPalId" for="roundedTwo_@photo.PayPalId" onclick="showBuy('buy_@photo.PayPalId');"></label>
+                               onchange="updateBuyVariables();" />
+                        <label id="labelfor_@photo.PayPalId" for="roundedTwo_@photo.PayPalId" onclick="showBuy('buy_@photo.PayPalId');">
+                            Select
+                        </label>
                     </div>
-                    
-                    
+
+
 
                 }
                 else if (!string.IsNullOrEmpty(photo.SaleCode))
@@ -71,30 +85,36 @@
             </div>
         </a>
     </article>
-    
+
 }
 
+
 <div style="display: none;">
-    
+
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalForm">
         <input type="hidden" name="cmd" value="_xclick" />
         <input type="hidden" name="business" value="karenmitrueimage@gmail.com" />
-        <input type="hidden" name="item_name" id="item_name" value="" />
+        <input type="hidden" name="item_name" id="item_name" value="mi-photo" />
         <input type="hidden" name="invoice" id="invoice" value="">
         <input type="hidden" name="item_number" id="item_number" value="">
         <input type="hidden" name="amount" id="amount" value="" />
         <input type="hidden" name="return" value="http://www.mi-photoshare.com/photoshare/public/viewcode" />
         <input type="hidden" name="currency_code" value="GBP" />
-        <input type="hidden" name="notify_url" value="http://www.mi-photoshare.com/photoshare/paypal/ipn">
+        <input type="hidden" name="notify_url" value="https://www.mi-photoshare.com/photoshare/paypal/ipn">
         <input type="hidden" name="charset" value="UTF-8">
-        
+
         <button type="submit" class="button small">Buy</button>
     </form>
 
 </div>
 
 @section scripts {
-    
+    <script>
+        var photoAmount = @photoAmount;
+    </script>
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
     <script src="~/scripts/app/publicViewCode.js"></script>
 
 }

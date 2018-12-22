@@ -15,8 +15,26 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public ActionResult Help()
+        {
+            return View();
+        }
 
-        // GET: Public
+        public ActionResult Confirmation(string salesCodes)
+        {
+            var logic = new GeneralLogic();
+            if (salesCodes != null)
+            {
+                var model = logic.GetAllPhotoSalessBySalesCodes(salesCodes?.Split(',').ToList());
+                return View(model);
+            }
+            else
+            {
+                return ViewCode(null);
+            }
+        }
+
+            // GET: Public
         public ActionResult ViewCode(string viewingcode)
         {
             var model = new List<PhotoShare.Dto.vwPhotosAndSale>();
@@ -91,7 +109,7 @@ namespace WebApplication.Controllers
             }
 
 
-            return View(model);
+            return View("ViewCode", model);
         }
     }
 }

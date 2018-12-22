@@ -1,0 +1,16 @@
+<svg width="110" height="130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+ <metadata>Created by potrace 1.14, written by Peter Selinger 2001-2017</metadata>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="112" height="132" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <path stroke="#798289" d="m28.364405,37.332727c-26.799976,-0.514564 -51.600266,44.244488 20.653814,90.650001c0.079219,-0.152246 0.383883,-0.152246 0.463092,0c74.584861,-47.90251 45.75593,-94.044001 18.060524,-90.452171c-10.79679,1.400224 -15.891838,7.799471 -18.292078,13.303247c-2.400221,-5.503776 -7.495289,-11.903022 -18.292044,-13.303247c-0.865491,-0.112292 -1.728786,-0.181203 -2.593309,-0.197826l0,-0.000003l0,0z" id="path2361" stroke-miterlimit="4" stroke-linejoin="round" stroke-width="0" fill-rule="evenodd" fill="#aecdcf"/>
+   <text stroke="#000000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="120" id="svg_2" y="-961.791024" x="12.756455" stroke-opacity="null" stroke-width="0" fill="#ffffff" transform="matrix(0.18683620919032876,0,0,0.18683620919032876,13.235534392036605,255.03524670529544) " font-weight="normal">mi-true</text>
+   <text stroke="#000000" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="120" id="svg_3" y="-864.179794" x="33.756455" stroke-opacity="null" stroke-width="0" fill="#ffffff" transform="matrix(0.18683620919032876,0,0,0.18683620919032876,13.235534392036605,255.03524670529544) ">image</text>
+  </g>
+ </g>
+</svg>

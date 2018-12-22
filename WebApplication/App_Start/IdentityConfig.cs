@@ -24,7 +24,16 @@ namespace WebApplication
 
         public async Task SendAsync(IdentityMessage message)
         {
-            await SendAsync(message, null);
+            try
+            {
+                await SendAsync(message, null);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+                throw;
+            }
+            
         }
 
         public async Task SendAsync(IdentityMessage message, List<Attachment> attachments)
@@ -91,7 +100,6 @@ namespace WebApplication
 
             // Send:
             await client.SendMailAsync(mail);
-
             //return Task.FromResult(0);
         }
     }

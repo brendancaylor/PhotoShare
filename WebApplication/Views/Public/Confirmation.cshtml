@@ -1,0 +1,70 @@
+﻿@model List<PhotoShare.Dto.MtDbPhotoSale>
+
+@{
+    ViewBag.Title = "Confirmation";
+    Layout = "~/Views/Shared/_LayoutPublicClean.cshtml";
+}
+
+
+<div style="width: 80%; margin: 30px auto; padding: 10px; background-color: #808080;">
+
+    <div>
+
+        <h1 style="font-size: 2rem;">Purchase Confirmation</h1>
+        <a href="./ViewCode">Return back to home page</a>
+    </div>
+
+
+    <div >
+
+        <p>
+
+            On behalf of Mi-True Image, thank you for purchasing your
+            @Pluralise(Model.Count(), "photo", "photos").<br />
+
+            Your download
+            @Pluralise(Model.Count(), "code is", "codes are"):
+            <br />
+
+            <ul style="list-style: circle; margin-left: 20px;">
+                @foreach (var item in Model)
+                {
+                    <li>@item.SaleCode</li>
+                }
+            </ul>
+            <br />Please make a note of
+            @Pluralise(Model.Count(), "this", "these")
+            for your reference.<br />
+
+            You can also use @Pluralise(Model.Count(), "this direct link", "these direct links").
+            <br />
+
+            <ul style="list-style: circle; margin-left: 20px;">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@item.MtDbPhoto.DbShareUrl" target="@item.SaleCode">@item.MtDbPhoto.DbShareUrl</a>
+                    </li>
+                }
+            </ul>
+        </p>
+
+        <p>
+            <br />
+            Your @Pluralise(Model.Count(), "image is", "images are") downloaded through dropbox in
+            high resolution for you to print as you wish.
+            You do not need to register an account to download @Pluralise(Model.Count(), "it", "them").
+            <br />
+            Best wishes Karen
+            <br /><br />
+            <a href="mailto:karenmitrueimage@gmail.com">karenmitrueimage@gmail.com</a>
+        </p>
+
+
+    </div>
+</div>
+
+@helper Pluralise(int count, string singular, string plural)
+{
+    @(count == 1 ? singular : plural);
+}

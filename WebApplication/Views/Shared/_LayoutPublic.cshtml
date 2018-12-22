@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
 
     @Styles.Render("~/Content/main")
-
+    <link href="~/Content/bootstrap.public.css" rel="stylesheet" />
 
     <noscript><link rel="stylesheet" href="~/assets/css/noscript.css" /></noscript>
     <!--[if lte IE 8]><link rel="stylesheet" href="@Url.Content("~")assets/css/ie8.css" /><![endif]-->
@@ -35,17 +35,29 @@
 </head>
 <body>
 
-    <div id="wrapper">
+    <div class="buyBox" style="display:none;">
+
+        <button type="button" class="btn btn-primary" onclick="showPayPalModal();">
+            Buy now
+        </button>
+        <span class="pull-right">
+            <text class="numberOfPicsSelected"></text> selected (£ <text class="costOfPics"></text>)
+        </span>
+    </div>
+
+    <div id="wrapper" style="clear:both ;">
 
         <div id="main">
+
             <div id="reel">
 
                 <!-- Header Item -->
 
-                <div id="header" class="item" data-width="400" style="background-image: url('../Images/logo.png'); background-repeat: no-repeat; background-position: right top;">
+                <div id="header" class="item" data-width="400" style="background-image: url('../Images/logo2.png'); background-repeat: no-repeat; background-position: right top;">
                     <div class="inner">
 
                         @RenderSection("header", required: false)
+
 
                     </div>
                 </div>
@@ -57,16 +69,21 @@
 
         <div id="footer">
             <div class="left">
-                <p>
-                    <!--
-                    This is <strong>Parallelism</strong>, a responsive portfolio site template by <a href="http://html5up.net">HTML5 UP</a>. Free for personal<br />
-                    and commercial use under the <a href="http://html5up.net/license">Creative Commons Attribution</a> license.
-                    -->
-                    The simple and safe way to share images <br/>
-                    buy and download images using your secure viewing code
-                    <br />
-                    If you do not already have your specific viewing code please contact me and I shall send it to you.
 
+                <p>
+                    @*
+                        <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#payPalModal">
+                            Buy
+                        </button>
+                    *@
+
+                    Buy and download images using your secure viewing code
+
+                    <span style="font-size: 0.7em;">
+                        <br />
+                        If you do not already have your specific viewing
+                        code please contact me and I shall send it to you.
+                    </span>
                 </p>
             </div>
             <div class="right">
@@ -79,25 +96,79 @@
                 <ul class="copyright">
                     <li>&copy; Mi-True Image</li>
                     <li>Version @ConfigurationManager.AppSettings["Environment"]</li>
-                    <!--<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>-->
+                    <li><a href="http://www.mi-trueimage.co.uk" target="mitrueimage">mi-trueimage</a></li>
+                    <li><a href="http://www.builditloveit.com" target="builditloveit">Built by builditloveit.com</a></li>
 
                 </ul>
+
             </div>
         </div>
+
 
     </div>
 
     <!-- Scripts -->
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/js/jquery.poptrox.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/assets/js/skel.min.js"></script>
     <script src="~/assets/js/skel-viewport.min.js"></script>
     <script src="~/assets/js/util.js"></script>
     <!--[if lte IE 8]><script src="@Url.Content("~")assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="~/assets/js/main.js"></script>
-    
+
+    <script>
+        (function () {
+            "use strict";
+            window.app = window.app || {};                  // top level parent module
+            window.app.models = {};                         // JSON transportation
+            window.app.helpers = {};
+            window.app.api = {};
+        }());
+
+        app.helpers.log = function (obj) {
+            if (typeof console != "undefined") {
+                if (typeof obj == "string") {
+                    console.log(obj);
+                    return obj;
+                } else {
+                    var fmt = JSON.stringify(obj);
+                    console.log(fmt);
+                    return fmt;
+                }
+            }
+
+            return "";
+        };
+
+        app.api.callApi = function (data, url, isAsync, callbackSuccess, callbackError) {
+
+            return $.ajax({
+                //url: '@Url.Content("~")' + url,
+                url: url,
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data, success) {
+                    if (callbackSuccess) {
+                        callbackSuccess(data);
+                    }
+                },
+                error: function (error) {
+                    if (callbackError) {
+                        callbackError(error);
+                    } else {
+                        app.helpers.log(error);
+                    }
+                },
+                async: isAsync
+            });
+        };
+
+    </script>
+
     @RenderSection("scripts", required: false)
-    
+
     @if (ConfigurationManager.AppSettings["Environment"] == "live")
     {
         <script>
@@ -113,6 +184,64 @@
 
         </script>
     }
+
+    <!-- Modal -->
+    <div class="modal fade" id="payPalModal" tabindex="-1" role="dialog" aria-labelledby="payPalModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong style="color: #808080">
+                        You have selected
+
+                        <text class="numberOfPicsSelected"></text> images (£ <text class="costOfPics"></text>)
+                    </strong>
+                    @*
+                        <h4 class="modal-title" id="payPalModalLabel" style="color: #808080">Ready to purchase your images</h4>
+                    *@
+                </div>
+                <div class="modal-body" style="color: #808080">
+                    <p style="font-size: 0.8em;">
+                        <strong style="color: #000">PLEASE READ THIS BEFORE PROCEEDING </strong><br />
+
+                        You may select as many images as you like before you proceed to buy.
+
+                        On purchase we will email you to the address you provided PayPal.
+                        The email will contain a link to Dropbox to download a digital copy
+                        of your image/s. Hard copies will NOT be provided.
+                        You do not need to register with, or install, dropbox to obtain your images.
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                    @*<button type="button" class="btn btn-primary" onclick="submitPayPal();">Proceed to PayPal</button>*@
+                    <div id="paypal-button"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="pleaseWait" tabindex="-1" role="dialog" aria-labelledby="pleaseWaitLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="color: #54c005">
+                    Payment successfully received
+                </div>
+                <div class="modal-body" style="color: #808080">
+                    <p style="font-size: 0.8em;">
+                        Your payment has been taken.
+                        <br />
+                        We're just processing things to get your images ready.
+                        <br />
+                        Please be patient, it won't take long :-)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>

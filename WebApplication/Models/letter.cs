@@ -9,11 +9,17 @@ namespace WebApplication.Models
     {
         public Letter()
         {
-            PhotoIds = new List<Guid>();
+            Photos = new List<PhotoModel>();
         }
 
         public string ViewingCode { get; set; }
         public decimal PricePerPhoto { get; set; }
-        public List<Guid> PhotoIds { get; set; } 
+        public List<PhotoModel> Photos { get; set; } 
+    }
+
+    public class PhotoModel
+    {
+        public System.Guid Id { get; set; }
+        public string DbName { get; set; }
     }
 }

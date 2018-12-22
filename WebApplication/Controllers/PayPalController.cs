@@ -153,6 +153,111 @@ namespace WebApplication.Controllers
             return null;
         }
 
+        private string ProcessPhoto(
+            string currency,
+            string amount,
+            string buyersEmail,
+            string txnid,
+            string json,
+            string payPalPhotoId,
+            decimal payPalPhotoPrice)
+        {
+
+            var photo = new PhotoShare.Dto.MtDbPhoto();
+
+            var mtIpnTestnew = new MtIpnTest()
+            {
+                Id = Guid.NewGuid(),
+                IpnMessage = ""
+            };
+
+            try
+            {
+                photo = logic.GetMtDbPhotoIncludeByPayPalId(payPalPhotoId);
+            }
+            catch (Exception ex)
+            {
+                mtIpnTestnew = new MtIpnTest()
+                {
+                    Id = Guid.NewGuid(),
+                    IpnMessage = string.Format("Exception :{0}"
+                    , ex.Message)
+                };
+                logic.AddMtIpnTest(mtIpnTestnew);
+            }
+
+            if (photo != null)
+            {
+                try
+                {
+                    // id equals a valid photo
+                    if (photo.MtDbFolder.PricePerPhoto.HasValue
+                        && photo.MtDbFolder.PricePerPhoto.Value == payPalPhotoPrice
+                        && currency == "GBP"
+                        )
+                    {
+
+                        mtIpnTestnew.IpnMessage = string.Format("COMPLETED :-) json {0}", json);
+                        logic.AddMtIpnTest(mtIpnTestnew);
+                        var code = GeneralLogic.RandomString(8);
+                        // they've paid the correct amount
+                        var sale = new PhotoShare.Dto.MtDbPhotoSale()
+                        {
+                            Id = Guid.NewGuid(),
+                            BuyersEmail = buyersEmail,
+                            DatePaid = DateTime.Now,
+                            IpnMessage = json,
+                            MtDbPhotoId = photo.Id,
+                            PricePaid = photo.MtDbFolder.PricePerPhoto.Value,
+                            SaleCode = code,
+                            Txnid = txnid
+                        };
+                        logic.AddSale(sale);
+
+                        new GeneralLogic().UpdateTotalSales(photo.MtDbFolderId);
+                        return code;
+                    }
+                    else
+                    {
+
+                        mtIpnTestnew = new MtIpnTest()
+                        {
+                            Id = Guid.NewGuid(),
+                            IpnMessage = string.Format("PricePerPhoto :{0}, amount: {1}, currency: {2}"
+                                , photo.MtDbFolder.PricePerPhoto.Value
+                                , amount
+                                , currency)
+                        };
+
+                        logic.AddMtIpnTest(mtIpnTestnew);
+                    }
+                }
+                catch
+                    (Exception ex)
+                {
+                    mtIpnTestnew = new MtIpnTest()
+                    {
+                        Id = Guid.NewGuid(),
+                        IpnMessage = string.Format("Exception :{0}"
+                            , ex.Message)
+                    };
+                    logic.AddMtIpnTest(mtIpnTestnew);
+                }
+            }
+
+            else
+            {
+                mtIpnTestnew = new MtIpnTest()
+                {
+                    Id = Guid.NewGuid(),
+                    IpnMessage = string.Format("photo is null payPalPhotoId: {0}", payPalPhotoId)
+                };
+                logic.AddMtIpnTest(mtIpnTestnew);
+            }
+            return null;
+        }
+
+
         private async Task sendEmail(string emailAddress, string emailBody, string emailSubject)
         {
             EmailService emailService = new EmailService();
@@ -170,13 +275,13 @@ namespace WebApplication.Controllers
             byte[] parameters = Request.BinaryRead(Request.ContentLength);
 
             string data = Encoding.UTF8.GetString(parameters);
-            
+
             if (parameters != null)
             {
                 //if Debug 
                 //model.Status = "VERIFIED";
                 //end if Debug 
-                
+
                 model.GetStatus(parameters);
             }
 
@@ -219,7 +324,7 @@ namespace WebApplication.Controllers
                     var urls = "";
 
                     var arrCodes = model._PayPalCheckoutInfo.item_number.Split(',');
-                    var pricePerPhoto = Convert.ToDecimal(model._PayPalCheckoutInfo.mc_gross)/arrCodes.Length;
+                    var pricePerPhoto = Convert.ToDecimal(model._PayPalCheckoutInfo.mc_gross) / arrCodes.Length;
 
                     foreach (var payPalPhotoId in arrCodes)
                     {
@@ -238,10 +343,10 @@ namespace WebApplication.Controllers
                             codes += salesCode;
                             urls += string.Format(" http://www.mi-photoshare.com/photoshare/Public/ViewCode?viewingcode={0}", salesCode);
                         }
-                        
+
                     }
-                    
-                    
+
+
                     string pluralText1 = "";
                     string pluralText2 = "this";
                     if (codesList.Count > 1)
@@ -284,7 +389,7 @@ karenmitrueimage@gmail.com
                     }
 
                 }
-                
+
                 else
                 {
                     mtIpnTestnew = new MtIpnTest()
@@ -308,7 +413,7 @@ karenmitrueimage@gmail.com
                 mtIpnTestnew = new MtIpnTest()
                 {
                     Id = Guid.NewGuid(),
-                    IpnMessage = string.Format("Not verified! Status {0} | json {1}",model.Status.ToLower(), json)
+                    IpnMessage = string.Format("Not verified! Status {0} | json {1}", model.Status.ToLower(), json)
                 };
                 logic.AddMtIpnTest(mtIpnTestnew);
                 await sendEmail(
@@ -318,7 +423,110 @@ karenmitrueimage@gmail.com
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
-        } 
+        }
+
+        [HttpPost]
+        public async Task<string> payPalCallBack(PalPalAuthorizeResponse palPalAuthorizeResponse)
+        {
+            //ActionResult
+
+            var jsonSerializer = new JavaScriptSerializer();
+            var json = jsonSerializer.Serialize(palPalAuthorizeResponse);
+            var codesList = new List<string>();
+
+            if (palPalAuthorizeResponse.state.ToLower() == "approved")
+            {
+                
+                var codes = "";
+                var urls = "";
+
+                var arrCodes = palPalAuthorizeResponse.photoCodes.Split(',');
+                var pricePerPhoto = Convert.ToDecimal(palPalAuthorizeResponse.transactions.First().amount.total) / arrCodes.Length;
+
+                foreach (var payPalPhotoId in arrCodes)
+                {
+                    var salesCode = ProcessPhoto(
+                        palPalAuthorizeResponse.transactions.First().amount.currency,
+                        palPalAuthorizeResponse.transactions.First().amount.total,
+                        palPalAuthorizeResponse.payer.payer_info.email,
+                        palPalAuthorizeResponse.id,
+
+                        json, payPalPhotoId, pricePerPhoto);
+
+                    if (!string.IsNullOrEmpty(salesCode))
+                    {
+                        codesList.Add(salesCode);
+                        if (codes.Length > 0)
+                        {
+                            codes += @"
+";
+                            urls += @"
+";
+                        }
+                        codes += salesCode;
+                        urls += string.Format(" http://www.mi-photoshare.com/photoshare/Public/ViewCode?viewingcode={0}", salesCode);
+                    }
+
+                }
+
+                string pluralText1 = "";
+                string pluralText2 = "this";
+                if (codesList.Count > 1)
+                {
+                    pluralText1 = "s";
+                    pluralText2 = "these";
+                }
+
+                if (codesList.Count > 0)
+                {
+                    var emailBody = string.Format(@"On behalf of Mi-True Image, thank you for purchasing your photo{0}.
+You may download your photo{0} using {1} code{0} :
+
+{2}
+
+or by using {1} link{0} :
+
+{3}
+
+Your purchases will be made available to you through a dropbox account so you can receive your image in high resolution for you to print as you wish.
+
+Best wishes Karen
+
+karenmitrueimage@gmail.com
+
+"
+                        , pluralText1, pluralText2, codes, urls);
+
+                    var emailSubject = "Mi-True Image purchase";
+
+                    await sendEmail(palPalAuthorizeResponse.payer.payer_info.email, emailBody, emailSubject);
+
+                    var mtIpnTestnew = new MtIpnTest()
+                    {
+                        Id = Guid.NewGuid(),
+                        IpnMessage = string.Format("Email sent to :{0}", palPalAuthorizeResponse.payer.payer_info.email)
+                    };
+                    logic.AddMtIpnTest(mtIpnTestnew);
+                }
+            }
+            else
+            {
+                var mtIpnTestnew = new MtIpnTest()
+                {
+                    Id = Guid.NewGuid(),
+                    IpnMessage = string.Format("Not verified! Status {0} | json {1}", palPalAuthorizeResponse.state, json)
+                };
+                logic.AddMtIpnTest(mtIpnTestnew);
+                await sendEmail(
+                        "brendan.caylor@gmail.com"
+                        , string.Format("mi-photoshare problems :-( | {0}", mtIpnTestnew.IpnMessage)
+                        , "mi-photoshare problems");
+            }
+
+            //return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return String.Join(",", codesList.ToArray());
+        }
+
 
     }
 }
